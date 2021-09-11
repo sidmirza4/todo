@@ -3,16 +3,17 @@ import { lightTheme, darkTheme, GlobalStyles } from './theme';
 
 import Header from './components/Header';
 import { useAppContext } from './context/AppContext';
+import Content from './components/Content';
 
 const App = () => {
 	const appCtx = useAppContext();
-	const { isDarkTheme, toggleTheme } = appCtx;
+	const { isDarkTheme } = appCtx;
 
 	return (
 		<ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
 			<GlobalStyles />
 			<Header />
-			<button onClick={toggleTheme}>Toggle Theme</button>
+			<Content />
 		</ThemeProvider>
 	);
 };

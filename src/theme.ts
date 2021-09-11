@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle<Props>`
   body {
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
-    transition: background 0.2s ease-in, color 0.2s ease-in;
+    transition: background 0.1s ease-in, color 0.1s ease-in;
   }
 `;
 
