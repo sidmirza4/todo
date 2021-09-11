@@ -30,7 +30,10 @@ const Content = () => {
 				</div>
 			</Grid>
 
-			<Input isDarkTheme={appCtx.isDarkTheme} />
+			<Input
+				placeholder='Create a new todo....'
+				isDarkTheme={appCtx.isDarkTheme}
+			/>
 		</ContentContainer>
 	);
 };
