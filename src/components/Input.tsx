@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const Input = styled.input<{ isDarkTheme: boolean }>`
 	& {
 		width: 100%;
-		padding: 1.5rem 2rem;
-		border-radius: 10px;
+		padding: 2rem;
+		border-radius: 5px;
 		font-size: 1.8rem;
 		font-family: inherit;
 		color: ${props =>
