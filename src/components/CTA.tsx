@@ -7,7 +7,8 @@ import TextBtn from './TextBtn';
 
 const CTA = () => {
 	const appCtx = useAppContext();
-	const { getNumberOfUncompletedTodos, clearCompleted } = useTodosContext();
+	const { getNumberOfUncompletedTodos, clearCompleted, setFilter } =
+		useTodosContext();
 
 	return (
 		<CTAContainer
@@ -17,9 +18,19 @@ const CTA = () => {
 		>
 			<TextBtn>{getNumberOfUncompletedTodos()} items left</TextBtn>
 			<Grid>
-				<TextBtn style={{ marginRight: '1rem' }}>All</TextBtn>
-				<TextBtn style={{ marginRight: '1rem' }}>Active</TextBtn>
-				<TextBtn>Completed</TextBtn>
+				<TextBtn
+					style={{ marginRight: '1rem' }}
+					onClick={() => setFilter('all')}
+				>
+					All
+				</TextBtn>
+				<TextBtn
+					style={{ marginRight: '1rem' }}
+					onClick={() => setFilter('active')}
+				>
+					Active
+				</TextBtn>
+				<TextBtn onClick={() => setFilter('completed')}>Completed</TextBtn>
 			</Grid>
 			<TextBtn onClick={clearCompleted}>Clear Completed</TextBtn>
 		</CTAContainer>

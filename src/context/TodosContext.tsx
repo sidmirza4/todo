@@ -3,8 +3,13 @@ import uniqid from 'uniqid';
 
 import { Todo } from '../types/todo';
 
+type FilterType = 'all' | 'active' | 'completed';
+
 interface ITodosContext {
+	filter: FilterType;
+	setFilter: (filter: FilterType) => void;
 	todos: Todo[];
+	todosToShow: Todo[];
 	addTodo: (title: string) => void;
 	removeTodo: (id: string) => void;
 	toggleTodo: (id: string) => void;
@@ -17,7 +22,10 @@ interface ITodosContext {
 }
 
 const TodosContext = createContext<ITodosContext>({
+	filter: 'all',
+	setFilter: () => {},
 	todos: [],
+	todosToShow: [],
 	addTodo: () => {},
 	removeTodo: () => {},
 	toggleTodo: () => {},
@@ -31,6 +39,19 @@ const TodosContext = createContext<ITodosContext>({
 
 export const TodosContextProvider: React.FC<{}> = props => {
 	const [todos, setTodos] = useState<Todo[]>([]);
+	const [todosToShow, setTodosToShow] = useState<Todo[]>([]);
+	const [filter, setFilter] = useState<FilterType>('all');
+
+	useEffect(() => {
+		// set todos to show according to the filter
+		if (filter === 'all') {
+			setTodosToShow(todos);
+		} else if (filter === 'active') {
+			setTodosToShow(todos.filter(todo => !todo.completed));
+		} else if (filter === 'completed') {
+			setTodosToShow(todos.filter(todo => todo.completed));
+		}
+	}, [filter, todos]);
 
 	useEffect(() => {
 		const todos = localStorage.getItem('todos');
@@ -88,7 +109,10 @@ export const TodosContextProvider: React.FC<{}> = props => {
 	return (
 		<TodosContext.Provider
 			value={{
+				filter,
+				setFilter,
 				todos,
+				todosToShow,
 				addTodo,
 				removeTodo,
 				toggleTodo,

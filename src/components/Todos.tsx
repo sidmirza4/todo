@@ -1,15 +1,16 @@
 import styled from 'styled-components';
+
 import { useAppContext } from '../context/AppContext';
 import { useTodosContext } from '../context/TodosContext';
 import TodoItem from './TodoItem';
 
 const Todos = () => {
 	const appCtx = useAppContext();
-	const { todos } = useTodosContext();
+	const { todosToShow } = useTodosContext();
 
 	return (
 		<TodosContainer isDark={appCtx.isDarkTheme}>
-			{todos.map(todo => (
+			{todosToShow.map(todo => (
 				<TodoItem key={todo.id} todo={todo} />
 			))}
 		</TodosContainer>
