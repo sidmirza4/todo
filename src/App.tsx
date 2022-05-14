@@ -1,22 +1,19 @@
-import { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme, GlobalStyles } from './theme';
 
+import { lightTheme, darkTheme, GlobalStyles } from './theme';
 import Header from './components/Header';
+import { useAppContext } from './context/AppContext';
+import Content from './components/Content';
 
 const App = () => {
-	const [theme, setTheme] = useState('light');
-	const isDarkTheme = theme === 'dark';
-
-	const toggleTheme = () => setTheme(isDarkTheme ? 'light' : 'dark');
+	const appCtx = useAppContext();
+	const { isDarkTheme } = appCtx;
 
 	return (
 		<ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
 			<GlobalStyles />
-			<div className='App'>
-				<Header />
-				<button onClick={toggleTheme}>Toggle Theme</button>
-			</div>
+			<Header />
+			<Content />
 		</ThemeProvider>
 	);
 };
