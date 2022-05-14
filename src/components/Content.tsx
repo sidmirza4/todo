@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 import { useAppContext } from '../context/AppContext';
-import iconSun from '../images/icon-sun.svg';
-import iconMoon from '../images/icon-moon.svg';
+
 import Grid from './Grid';
 import Heading from './Heading';
 import Input from './Input';
 import Todos from './Todos';
 import CTA from './CTA';
+import DarkmodeButton from './DarkmodeButton';
 
 const Content = () => {
 	const appCtx = useAppContext();
@@ -20,16 +20,7 @@ const Content = () => {
 				style={{ marginBottom: '3rem' }}
 			>
 				<Heading>TODO</Heading>
-				<div
-					onClick={appCtx.toggleTheme}
-					style={{ cursor: 'pointer' }}
-					title={appCtx.isDarkTheme ? 'Light Theme' : 'Dark Theme'}
-				>
-					<img
-						src={appCtx.isDarkTheme ? iconSun : iconMoon}
-						alt='toggle_theme'
-					/>
-				</div>
+				<DarkmodeButton />
 			</Grid>
 
 			<InputContainer>
