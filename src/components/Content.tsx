@@ -43,6 +43,15 @@ const ContentContainer = styled.section<{ isDark: boolean }>`
 	position: absolute;
 	height: 75vh;
 	width: 50%;
+	@media (max-width: 900px) {
+		width: 75%;
+	}
+	@media (max-width: 680px) {
+		width: 85%;
+	}
+	@media (max-width: 500px) {
+		width: 95%;
+	}
 	top: 15vh;
 	left: 50%;
 	transform: translateX(-50%);

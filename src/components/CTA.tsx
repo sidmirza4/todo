@@ -7,7 +7,7 @@ import TextBtn from './TextBtn';
 
 const CTA = () => {
 	const appCtx = useAppContext();
-	const { getNumberOfUncompletedTodos, clearCompleted, setFilter } =
+	const { getNumberOfUncompletedTodos, clearCompleted, setFilter, filter } =
 		useTodosContext();
 
 	return (
@@ -19,18 +19,29 @@ const CTA = () => {
 			<TextBtn>{getNumberOfUncompletedTodos()} items left</TextBtn>
 			<Grid>
 				<TextBtn
-					style={{ marginRight: '1rem' }}
+					style={{
+						marginRight: '1rem',
+					}}
 					onClick={() => setFilter('all')}
+					active={filter === 'all'}
 				>
 					All
 				</TextBtn>
 				<TextBtn
-					style={{ marginRight: '1rem' }}
+					style={{
+						marginRight: '1rem',
+					}}
 					onClick={() => setFilter('active')}
+					active={filter === 'active'}
 				>
 					Active
 				</TextBtn>
-				<TextBtn onClick={() => setFilter('completed')}>Completed</TextBtn>
+				<TextBtn
+					onClick={() => setFilter('completed')}
+					active={filter === 'completed'}
+				>
+					Completed
+				</TextBtn>
 			</Grid>
 			<TextBtn onClick={clearCompleted}>Clear Completed</TextBtn>
 		</CTAContainer>
@@ -45,6 +56,10 @@ const CTAContainer = styled(Grid)<{ isDark: boolean }>`
 			? 'var(--very-dark-desaturated-blue)'
 			: 'var(--very-light-gray)'};
 	transition: all 0.1s ease-in;
+	@media (max-width: 560px) {
+		flex-direction: column;
+		row-gap: 1rem;
+	} ;
 `;
 
 export default CTA;
