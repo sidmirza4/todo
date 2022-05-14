@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import { useAppContext } from '../context/AppContext';
 
-const TextBtn: React.FC<{ style?: object }> = ({ style, children }) => {
+const TextBtn: React.FC<{ style?: object; onClick?: () => void }> = ({
+	style,
+	children,
+	onClick,
+}) => {
 	const appCtx = useAppContext();
 
 	return (
-		<StyledBtn style={style} isDark={appCtx.isDarkTheme}>
+		<StyledBtn style={style} isDark={appCtx.isDarkTheme} onClick={onClick}>
 			{children}
 		</StyledBtn>
 	);

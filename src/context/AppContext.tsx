@@ -6,18 +6,18 @@ interface IAppContext {
 	theme: string;
 	isDarkTheme: boolean;
 	toggleTheme: () => void;
-	todoList?: TodoList;
+	todoList: TodoList;
 }
 
 const AppContext = createContext<IAppContext>({
 	theme: 'light',
 	isDarkTheme: false,
 	toggleTheme: () => {},
-	todoList: undefined,
+	todoList: new TodoList(),
 });
 
 export const AppContextProvider: React.FC<{}> = props => {
-	const [theme, setTheme] = useState('light');
+	const [theme, setTheme] = useState('dark');
 	const [todoList, setTodoList] = useState(new TodoList());
 	const isDarkTheme = theme === 'dark';
 	const toggleTheme = () => setTheme(isDarkTheme ? 'light' : 'dark');

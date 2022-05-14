@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import { useAppContext } from '../context/AppContext';
 
+import { useAppContext } from '../context/AppContext';
+import { useTodosContext } from '../context/TodosContext';
 import Grid from './Grid';
 import TextBtn from './TextBtn';
 
 const CTA = () => {
 	const appCtx = useAppContext();
+	const { getNumberOfUncompletedTodos, clearCompleted } = useTodosContext();
 
 	return (
 		<CTAContainer
@@ -13,13 +15,13 @@ const CTA = () => {
 			justifyContent='space-between'
 			isDark={appCtx.isDarkTheme}
 		>
-			<TextBtn>5 items left</TextBtn>
+			<TextBtn>{getNumberOfUncompletedTodos()} items left</TextBtn>
 			<Grid>
 				<TextBtn style={{ marginRight: '1rem' }}>All</TextBtn>
 				<TextBtn style={{ marginRight: '1rem' }}>Active</TextBtn>
 				<TextBtn>Completed</TextBtn>
 			</Grid>
-			<TextBtn>Clear Completed</TextBtn>
+			<TextBtn onClick={clearCompleted}>Clear Completed</TextBtn>
 		</CTAContainer>
 	);
 };

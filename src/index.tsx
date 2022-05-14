@@ -2,10 +2,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { AppContextProvider } from './context/AppContext';
+import { TodosContextProvider } from './context/TodosContext';
 
 ReactDOM.render(
 	<AppContextProvider>
-		<App />
+		<TodosContextProvider>
+			<App />
+		</TodosContextProvider>
 	</AppContextProvider>,
 	document.getElementById('root')
 );

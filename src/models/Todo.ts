@@ -15,6 +15,7 @@ export default class TodoList {
 			completed: false,
 		};
 		this.todos.push(todo);
+		this.updateTodoOnLocalStorage();
 		return todo;
 	}
 
@@ -27,13 +28,24 @@ export default class TodoList {
 		if (todo) {
 			todo.completed = !todo.completed;
 		}
+		this.updateTodoOnLocalStorage();
 	}
 
 	deleteTodo(id: string): void {
 		this.todos = this.todos.filter(todo => todo.id !== id);
+		this.updateTodoOnLocalStorage();
 	}
 
 	clearCompleted(): void {
 		this.todos = this.todos.filter(todo => !todo.completed);
+		this.updateTodoOnLocalStorage();
+	}
+
+	getNumberOfUncompletedTodos(): number {
+		return this.todos.filter(todo => !todo.completed).length;
+	}
+
+	private updateTodoOnLocalStorage(): void {
+		localStorage.setItem('todos', JSON.stringify(this.todos));
 	}
 }
